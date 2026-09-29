@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor - Primer Mes</title>
+    <!-- Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for romantic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-romantic {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -20px;
+            pointer-events: none;
+            animation: float 6s linear infinite;
+        }
+
+        /* Custom scrollbar for letter content */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 241, 242, 0.5);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fda4af;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f43f5e;
+        }
+
+        .envelope-shadow {
+            box-shadow: 0 20px 25px -5px rgba(244, 63, 94, 0.15), 0 10px 10px -5px rgba(244, 63, 94, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rose-50 via-pink-50 to-red-100 min-h-screen flex items-center justify-center p-4 sm:p-6 overflow-x-hidden relative">
+
+    <div id="particles-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <main class="w-full max-w-xl z-10 relative">
+        
+        <!-- ENVELOPE VIEW -->
+        <div id="envelope-view" class="transition-all duration-700 transform flex flex-col items-center justify-center py-10">
+            <div class="text-center mb-8 px-4">
+                <span class="inline-block bg-rose-100 text-rose-600 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-3 uppercase tracking-widest shadow-sm border border-rose-200">
+                    Primer Mes de Novios 💌
+                </span>
+                <h1 class="font-serif-title text-3xl sm:text-4xl text-rose-900 font-bold mb-2">Una cartita especial para ti</h1>
+                <p class="text-rose-700/80 text-sm sm:text-base">Tengo algo muy lindo que decirte... Ábrela cuando estés lista.</p>
+            </div>
+
+            <!-- Interactive Envelope Container -->
+            <div id="envelope" onclick="openLetter()" class="w-full max-w-sm bg-gradient-to-b from-rose-100 to-rose-200 border-2 border-rose-300 rounded-2xl envelope-shadow p-6 sm:p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:border-rose-400 group relative text-center">
+                
+                <!-- Envelope Flap Graphic -->
+                <div class="absolute top-0 left-0 right-0 h-28 bg-rose-200/80 rounded-t-2xl border-b border-rose-300 transform origin-top transition-transform duration-500 group-hover:rotate-x-180 flex items-center justify-center">
+                    <div class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center shadow-md text-white text-xl animate-pulse mt-2">
+                        🌹
+                    </div>
+                </div>
+
+                <div class="pt-16 pb-4">
+                    <div class="w-20 h-20 bg-white/80 rounded-full mx-auto flex items-center justify-center shadow-inner mb-4 text-3xl">
+                        ✨
+                    </div>
+                    <p class="font-romantic text-3xl sm:text-4xl text-rose-800 font-bold mb-1">Para el amor de mi vida</p>
+                    <p class="text-xs uppercase tracking-wider text-rose-600 font-medium">Toca para abrir la carta</p>
+                </div>
+
+                <div class="mt-4">
+                    <button class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300 text-sm tracking-wide flex items-center justify-center mx-auto gap-2 group-hover:shadow-rose-300/50">
+                        <span>Abrir Carta</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LETTER VIEW -->
+        <div id="letter-view" class="hidden opacity-0 transition-opacity duration-1000 transform scale-95">
+            <div class="bg-white/95 backdrop-blur-md border border-rose-200/80 rounded-3xl shadow-2xl p-6 sm:p-10 relative overflow-hidden">
+                
+                <!-- Decorative background stamp or watermark -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-rose-100/50 rounded-full pointer-events-none blur-2xl"></div>
+
+                <!-- Letter Header -->
+                <div class="flex justify-between items-center border-b border-rose-100 pb-4 mb-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 bg-rose-400 rounded-full animate-ping"></span>
+                        <span class="text-xs uppercase tracking-widest text-rose-600 font-bold">29-08-26 DyM ❤️x100pre</span>
+                    </div>
+                    <button onclick="closeLetter()" class="text-xs text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1 rounded-full transition-colors">
+                        Cerrar sobre ↩
+                    </button>
+                </div>
+
+                <!-- Scrollable Love Letter Body -->
+                <div class="max-h-[60vh] overflow-y-auto pr-2 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+                    <p class="font-serif-title text-xl text-rose-900 font-bold italic mb-2">
+                        Hola amor, espero que estés bien... 🥰
+                    </p>
+
+                    <p>
+                        No sé cuándo llegues a leer este mensaje, pero quiero que recuerdes que yo sigo pensando en ti todos los días. Siempre ando con el deseo de volver a hablar o ver algo contigo. 😊 Tu muy bien sabes lo mucho que te quiero y amo jeje. ❤️
+                    </p>
+
+                    <p>
+                        Hoy sería el primer mes de novios que tenemos y ya es un buen tiempo desde que nos conocemos. Estoy muy feliz de haberte conocido, llegaste a mi vida a traer alegría jeje. ✨ Aún recuerdo cuando eras fría conmigo y poco a poco te volviste más cariñosa conmigo, aunque a veces te presionaba para que lo hicieras jeje. 🙈
+                    </p>
+
+                    <p>
+                        Sé que estos momentos son los más difíciles, pero también siento que es como una prueba. Por mi parte, cada día te amo más, te quiero más, te extraño más y quiero verte jeje. 🥰 Sé que no será pronto, pero yo no me desespero porque quiero estar contigo para siempre. 
+                    </p>
+
+                    <p>
+                        Las cosas pasan por algo y, mientras tú quieras seguir conmigo, aquí tendrás al chico más enamorado de ti. La verdad no sé cuándo llegues a leer esto, ya sabes por qué jeje, pero te dejo este mensajito para que sepas que no te olvido y que estás en mi mente todo el día. 💭 Eres la más hermosa, la más bella y preciosa de todas las novias, ninguna te llega a los talones. 👑
+                    </p>
+
+                    <p>
+                        Este es el primer mes de novios y quiero seguir celebrando meses, años y más jeje. Espero que con este mensajito entiendas que nunca dejaré de pensar en ti. 🥺 ¿Recuerdas cuando te canté? Jaja, aunque canto feo me escuchaste jaja, o cuando nos amanecimos y tú queriendo que yo grite que te quiero jaja. Aún recuerdo la primera llamada que hicimos, ese día estaba bien nervioso. 🤭 Tenemos momentos bonitos y todo eso lo aprecio y lo guardo en mi corazón. 💖
+                    </p>
+
+                    <p class="pt-2">
+                        Bueno amor, espero que estés bien y, como siempre te decía, tus hermanas ya son mis cuñadas jejej, yo te lo dije. 🤭 Toma agua, come bien, no andes de renegona y no olvides que, mientras yo viva, tendrás al chico más enamorado esperando a leer tus mensajes, a escuchar tu voz o ver tu carita linda.
+                    </p>
+
+                    <div class="pt-6 border-t border-rose-100 text-center sm:text-right mt-6">
+                        <p class="font-romantic text-3xl sm:text-4xl text-rose-600 font-bold mb-1">Te amo, vamos por más meses.</p>
+                        <p class="text-rose-900 font-bold tracking-widest text-sm">29-08-26 DyM ❤️x100pre</p>
+                    </div>
+                </div>
+
+                <!-- Footer button inside letter -->
+                <div class="mt-6 pt-4 border-t border-rose-100 flex justify-center">
+                    <button onclick="triggerCelebration()" class="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs sm:text-sm font-semibold py-2.5 px-6 rounded-full shadow-md transition-all transform hover:scale-105 flex items-center gap-2">
+                        <span>🌹 Lluvia de Flores y Amor ✨</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Function to create continuous subtle background particles
+        function createAmbientParticles() {
+            const container = document.getElementById('particles-container');
+            const items = ['❤️', '✨', '🌸'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'floating-heart';
+                particle.innerHTML = items[Math.floor(Math.random() * items.length)];
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.fontSize = (Math.random() * 14 + 14) + 'px';
+                
+                const duration = Math.random() * 3 + 5; // 5s to 8s
+                particle.style.animationDuration = duration + 's';
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }, 600);
+        }
+
+        // Function to release a rich burst of flowers and petals when opening the letter
+        function releaseFlowerBurst() {
+            const container = document.getElementById('particles-container');
+            const flowers = ['🌹', '🌸', '🌷', '🌺', '💐', '🌻', '💮'];
+            
+            // Generate 35 flowers and petals surging up from the bottom
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.className = 'floating-heart';
+                    flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+                    
+                    // Spread across width
+                    flower.style.left = (Math.random() * 90 + 5) + 'vw';
+                    flower.style.fontSize = (Math.random() * 22 + 18) + 'px';
+                    
+                    // Faster animation for burst effect
+                    const duration = Math.random() * 2 + 2.5;
+                    flower.style.animationDuration = duration + 's';
+                    
+                    container.appendChild(flower);
+                    
+                    setTimeout(() => {
+                        flower.remove();
+                    }, duration * 1000);
+                }, i * 40);
+            }
+        }
+
+        // Open letter transition
+        function openLetter() {
+            const envelopeView = document.getElementById('envelope-view');
+            const letterView = document.getElementById('letter-view');
+            
+            // Trigger flower shower effect immediately
+            releaseFlowerBurst();
+
+            envelopeView.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+            setTimeout(() => {
+                envelopeView.classList.add('hidden');
+                letterView.classList.remove('hidden');
+                setTimeout(() => {
+                    letterView.classList.remove('opacity-0', 'scale-95');
+                    letterView.classList.add('opacity-100', 'scale-100');
+                }, 50);
+            }, 400);
+        }
+
+        // Close letter back to envelope
+        function closeLetter() {
+            const envelopeView = document.getElementById('envelope-view');
+            const letterView = document.getElementById('letter-view');
+            
+            letterView.classList.remove('opacity-100', 'scale-100');
+            letterView.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                letterView.classList.add('hidden');
+                envelopeView.classList.remove('hidden');
+                setTimeout(() => {
+                    envelopeView.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                }, 50);
+            }, 400);
+        }
+
+        // Extra cute celebration burst when button inside the letter is clicked
+        function triggerCelebration() {
+            releaseFlowerBurst();
+        }
+
+        // Initialize background particles on load
+        window.onload = function() {
+            createAmbientParticles();
+        };
+    </script>
+</body>
+</html>
+```
